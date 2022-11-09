@@ -15,12 +15,33 @@ if [ ! -n "$2" ]; then
 fi
 sudo docker load <apisix_images.tar
 
+sudo docker tag apache/apisix:2.13.1-alpine $registry/apache/apisix:2.13.1-alpine
+sudo docker tag busybox:1.28 $registry/busybox:1.28
+sudo docker tag apache/apisix-dashboard:2.10.1-alpine $registry/apache/apisix-dashboard:2.10.1-alpine
+sudo docker tag quay.io/coreos/etcd:v3.4.16 $registry/quay.io/coreos/etcd:v3.4.16
+sudo docker tag apache/apisix-ingress-controller:1.4.0 $registry/apache/apisix-ingress-controller:1.4.0
+sudo docker tag bitnami/bitnami-shell:11-debian-11-r43 $registry/bitnami/bitnami-shell:11-debian-11-r43
+
 sudo docker push $registry/busybox:1.28
 sudo docker push $registry/apache/apisix:2.13.1-alpine
 sudo docker push $registry/apache/apisix-dashboard:2.10.1-alpine
 sudo docker push $registry/quay.io/coreos/etcd:v3.4.16
 sudo docker push $registry/apache/apisix-ingress-controller:1.4.0
 sudo docker push $registry/bitnami/bitnami-shell:11-debian-11-r43
+
+sudo docker rmi apache/apisix:2.13.1-alpine
+sudo docker rmi busybox:1.28
+sudo docker rmi apache/apisix-dashboard:2.10.1-alpine
+sudo docker rmi quay.io/coreos/etcd:v3.4.16
+sudo docker rmi apache/apisix-ingress-controller:1.4.0
+sudo docker rmi bitnami/bitnami-shell:11-debian-11-r43
+
+sudo docker rmi $registry/busybox:1.28
+sudo docker rmi $registry/apache/apisix:2.13.1-alpine
+sudo docker rmi $registry/apache/apisix-dashboard:2.10.1-alpine
+sudo docker rmi $registry/quay.io/coreos/etcd:v3.4.16
+sudo docker rmi $registry/apache/apisix-ingress-controller:1.4.0
+sudo docker rmi $registry/bitnami/bitnami-shell:11-debian-11-r43
 
 sudo helm upgrade --install apisix apisix-0.9.4.tgz --namespace $name_space --create-namespace \
     --set apisix.initCImage.image=$registry/busybox \
