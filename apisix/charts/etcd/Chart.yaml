@@ -1,0 +1,16 @@
+apiVersion: v2
+appVersion: v3.4.16
+description: Distributed reliable key-value store for the most critical data of a
+  distributed system.
+home: https://github.com/coreos/etcd
+icon: https://raw.githubusercontent.com/coreos/etcd/master/logos/etcd-horizontal-color.png
+keywords:
+- etcd
+maintainers:
+- email: mkhpalm@gmail.com
+  name: mkhpalm
+name: etcd
+sources:
+- https://github.com/mkhpalm/helm-charts/
+- https://github.com/coreos/etcd/
+version: 0.1.3

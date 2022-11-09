@@ -1,0 +1,21 @@
+persistentVolume:
+  enabled: true
+  storageClass: default
+
+podMonitor:
+  enabled: true
+
+prometheusRules:
+  enabled: true
+  rules:
+    - alert: Example
+      expr: metric == 1
+      for: 1m
+      labels:
+        severity: warning
+
+snapshot:
+  restore:
+    enabled: false
+  backup:
+    enabled: true
